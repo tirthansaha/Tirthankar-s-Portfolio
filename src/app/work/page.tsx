@@ -57,16 +57,15 @@ const projects = [
 const Work = () => {
   const [project, setProject] = useState(projects[0]);
 
-  const handleSlideChange=(swiper: { activeIndex: any; })=>{
-    const currentIndex=swiper.activeIndex;
+  const handleSlideChange = (swiper: { activeIndex: any; }) => {
+    const currentIndex = swiper.activeIndex;
     setProject(projects[currentIndex]);
   }
-
 
   return (
     <motion.section
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1, transition:{delay:2.4, duration: 0.4, ease:"easeIn"} }}
+      animate={{ opacity: 1, transition: { delay: 2.4, duration: 0.4, ease: "easeIn" } }}
       className="min-h-[80vh] flex flex-col justify-center py-12 xl:px-0"
     >
       <div className="container mx-auto">
@@ -81,7 +80,7 @@ const Work = () => {
               </h2>
               <div className="border border-black/30"></div>
               <h2 className="text-[30px] font-semibold leading-none text-black/60">
-               '{project.title}'
+                &apos;{project.title}&apos;
               </h2>
               
               <p className="text-black/70">{project.description}</p>
@@ -98,7 +97,7 @@ const Work = () => {
               <div className="border border-black/30"></div>
               <div className="flex items-center gap-4">
                 {project.gdrive && (
-                  <Link href={project.gdrive}>
+                  <Link href={project.gdrive} passHref>
                     <TooltipProvider delayDuration={100}>
                       <Tooltip>
                         <TooltipTrigger className="w-[70px] h-[70px] rounded-full bg-black/10 flex justify-center items-center group">
@@ -113,7 +112,7 @@ const Work = () => {
                 )}
 
                 {project.github && (
-                  <Link href={project.github}>
+                  <Link href={project.github} passHref>
                     <TooltipProvider delayDuration={100}>
                       <Tooltip>
                         <TooltipTrigger className="w-[70px] h-[70px] rounded-full bg-black/10 flex justify-center items-center group">
@@ -131,8 +130,8 @@ const Work = () => {
           </div>
           <div className="w-full xl:w-[50%]">
             <Swiper spaceBetween={30} slidesPerView={1} className="xl:h-[520px] mb-12" onSlideChange={handleSlideChange}>
-              {projects.map((project,index)=>{
-                return(
+              {projects.map((project, index) => {
+                return (
                   <SwiperSlide key={index} className="w-full">
                     <div className="h-[460px] realtive group flex justify-center items-center bg-pink-50/20">
                       {/* overlay */}
@@ -141,10 +140,9 @@ const Work = () => {
                       <div className="relative w-full h-full">
                         <Image src={project.image} fill className="object-cover" alt="" />
                       </div>
-
                     </div>
                   </SwiperSlide>
-                )
+                );
               })}
               {/* slider buttons */}
               <WorkSliderBtns containerStyles="flex gap-2 absolute right rounded-full bottom-[calc(50%_-_22px)] xl:bottom-0 z-20 w-full justify-between xl:w-max xl:justify-none" btnStyles="rounded-full bg-[#808080] hover:bg-accent-hover text-primary text-[22px] w-[40px] h-[40px] flex justify-center items-center transition-all" iconStyles={undefined} />
